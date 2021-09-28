@@ -1,13 +1,17 @@
 package br.com.zupacademy.carlos.casadocodigo.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.zupacademy.carlos.casadocodigo.controllers.dtos.LivroDto;
 import br.com.zupacademy.carlos.casadocodigo.controllers.forms.LivroForm;
 import br.com.zupacademy.carlos.casadocodigo.entities.Livro;
 import br.com.zupacademy.carlos.casadocodigo.repositories.AutorRepositorio;
@@ -32,5 +36,11 @@ public class LivroController {
 		livroRepositorio.save(novoLivro);
 	}
 	
-	//TODO - implementar a função de customizator genéricos para id, e depois passar esse customizador nos forms.
+	@GetMapping
+	public List<LivroDto> exibirLivros() {
+		
+		List<Livro> livros = livroRepositorio.findAll();
+		
+		return LivroDto.converter(livros);
+	}
 }
