@@ -11,7 +11,6 @@ public class LivroDto {
 	private String titulo;
 
 	public LivroDto(Long id, String titulo) {
-		super();
 		this.id = id;
 		this.titulo = titulo;
 	}
