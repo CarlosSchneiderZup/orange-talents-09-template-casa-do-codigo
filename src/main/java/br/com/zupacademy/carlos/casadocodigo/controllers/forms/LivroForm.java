@@ -13,6 +13,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
+import br.com.zupacademy.carlos.casadocodigo.customizations.IdFinder;
 import br.com.zupacademy.carlos.casadocodigo.customizations.UniqueValue;
 import br.com.zupacademy.carlos.casadocodigo.entities.Autor;
 import br.com.zupacademy.carlos.casadocodigo.entities.Categoria;
@@ -43,8 +44,10 @@ public class LivroForm {
 	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private LocalDate data;
 	@NotNull
+	@IdFinder(domainClass = Categoria.class, fieldName = "id")
 	private Long idCategoria;
 	@NotNull
+	@IdFinder(domainClass = Autor.class, fieldName = "id")
 	private Long idAutor;
 
 	public String getTitulo() {
