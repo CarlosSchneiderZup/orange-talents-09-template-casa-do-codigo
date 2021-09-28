@@ -9,6 +9,4 @@ import br.com.zupacademy.carlos.casadocodigo.entities.Pais;
 
 public interface PaisRepositorio extends JpaRepository<Pais, Long> {
 
-	Optional<Estado> findByEstadosId(Long idEstado);
-	Optional<Estado> findByEstadosNome(String nomeEstado);
 }

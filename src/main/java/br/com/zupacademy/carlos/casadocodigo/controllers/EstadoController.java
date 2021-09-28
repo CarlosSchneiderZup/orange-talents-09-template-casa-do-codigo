@@ -6,15 +6,12 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.zupacademy.carlos.casadocodigo.controllers.components.GaranteEstadoUnicoPorPaisValidator;
 import br.com.zupacademy.carlos.casadocodigo.controllers.forms.EstadoForm;
 import br.com.zupacademy.carlos.casadocodigo.entities.Estado;
 import br.com.zupacademy.carlos.casadocodigo.repositories.EstadoRepositorio;
@@ -28,13 +25,6 @@ public class EstadoController {
 	private EstadoRepositorio estadoRepositorio;
 	@Autowired
 	private PaisRepositorio paisRepositorio;
-	@Autowired
-	private GaranteEstadoUnicoPorPaisValidator garanteEstadoUnicoPorPaisValidator;
-
-	@InitBinder
-	public void configuracoesIniciais(WebDataBinder binder) {
-		binder.addValidators(garanteEstadoUnicoPorPaisValidator);
-	}
 
 	@PostMapping
 	public ResponseEntity<Estado> cadastraEstado(@RequestBody @Valid EstadoForm formulario,
