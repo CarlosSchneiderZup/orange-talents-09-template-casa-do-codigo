@@ -41,4 +41,14 @@ public class Pais {
 		return estados;
 	}
 
+	public boolean verificaValidadeEstado(String nomeEstado) {
+		
+		for(Estado estado : estados) {
+			if(estado.getNome().equals(nomeEstado)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 }

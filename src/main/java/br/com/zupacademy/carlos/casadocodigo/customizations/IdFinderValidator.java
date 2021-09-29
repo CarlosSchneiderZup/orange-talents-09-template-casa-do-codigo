@@ -30,8 +30,7 @@ public class IdFinderValidator implements ConstraintValidator<IdFinder, Object> 
 		query.setParameter("value", value);
 		
 		List<?> list = query.getResultList();
-		Assert.state(!list.isEmpty(), "Não foi encontrado um " + klass + " com o " + domainAttribute + " = " + value);
-//		Assert.isTrue(list.size() <=1, "aconteceu algo bizarro e você tem mais de um "+klass+" com o atributo "+domainAttribute+" com o valor = "+value);
+		Assert.isTrue(list.size() <=1, "Não foi encontrado o valor para o atributo desejado: " + value);
 		
 		return !list.isEmpty();
 	}
