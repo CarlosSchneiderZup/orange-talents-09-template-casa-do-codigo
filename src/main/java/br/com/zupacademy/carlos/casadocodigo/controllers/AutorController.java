@@ -40,6 +40,5 @@ public class AutorController {
 			autorRepositorio.save(autor);
 			URI uri = uriBuilder.path("/autores/{id}").buildAndExpand(autor.getId()).toUri();
 			return ResponseEntity.created(uri).body(autor);
-		
 	}
 }
