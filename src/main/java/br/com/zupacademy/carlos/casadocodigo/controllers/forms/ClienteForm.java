@@ -22,10 +22,8 @@ public class ClienteForm {
 	@UniqueValue(domainClass = Cliente.class, fieldName = "email")
 	private String email;
 	@NotBlank
-	@UniqueValue(domainClass = Cliente.class, fieldName = "nome")
 	private String nome;
 	@NotBlank
-	@UniqueValue(domainClass = Cliente.class, fieldName = "sobrenome")
 	private String sobrenome;
 	@NotNull
 	private TipoDocumento tipoDocumento;
@@ -55,10 +53,7 @@ public class ClienteForm {
 		if (idEstado != null) {
 			Optional<Estado> estadoInformado = estadoRepositorio.findById(idEstado);
 			if (estadoInformado.isPresent()) {
-				boolean estadoValido = pais.verificaValidadeEstado(estadoInformado.get().getNome());
-				if (estadoValido) {
 					estado = estadoInformado.get();
-				}
 			}
 		}
 

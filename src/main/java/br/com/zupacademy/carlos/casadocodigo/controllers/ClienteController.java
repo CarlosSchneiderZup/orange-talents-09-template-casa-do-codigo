@@ -6,12 +6,15 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.zupacademy.carlos.casadocodigo.controllers.components.GaranteEstadoPertenceAPaisValidator;
 import br.com.zupacademy.carlos.casadocodigo.controllers.dtos.ClienteDto;
 import br.com.zupacademy.carlos.casadocodigo.controllers.forms.ClienteForm;
 import br.com.zupacademy.carlos.casadocodigo.entities.Cliente;
@@ -30,6 +33,14 @@ public class ClienteController {
 	private PaisRepositorio paisRepositorio;
 	@Autowired
 	private EstadoRepositorio estadoRepositorio;
+	
+	@Autowired
+	private GaranteEstadoPertenceAPaisValidator garanteEstadoPertenceAPaisValidator;
+	
+	@InitBinder
+	public void configuracoesIniciais(WebDataBinder binder) {
+		binder.addValidators(garanteEstadoPertenceAPaisValidator);
+	}
 	
 	@PostMapping
 	public ResponseEntity<ClienteDto> cadastraCliente(@RequestBody @Valid ClienteForm form, UriComponentsBuilder uriBuilder) {
